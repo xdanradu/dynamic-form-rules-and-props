@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 interface FieldConfig {
   maxLength: number;
   minLength: number;
-  validators: any[]; // You might want a more specific type for validators
+  validators: any[];
 }
 
 @Component({
@@ -56,7 +56,6 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
         tap((_) => (this.viewInitialized = true))
       )
       .subscribe((config) => {
-        // Use takeUntil
         this.field1Config$.next(config);
         this.myForm.addControl(
           'field1',
@@ -76,7 +75,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   }
 
   private getFieldConfigAsync(fieldName: string): Observable<FieldConfig> {
-    return of(this.simulateBackendData(fieldName)).pipe(delay(1000)); // 500ms delay
+    return of(this.simulateBackendData(fieldName)).pipe(delay(1000));
   }
 
   private simulateBackendData(fieldName: string): FieldConfig {
@@ -89,7 +88,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
           Validators.minLength(2),
           Validators.maxLength(6),
           Validators.pattern(/^[0-9]{2}[A-Z]$/),
-        ], // Example validators
+        ]
       };
     } else if (fieldName === 'field2') {
       return {
@@ -100,7 +99,7 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
           Validators.minLength(3),
           Validators.maxLength(7),
           Validators.pattern(/^[0-9]{2}[A-Z]$/),
-        ], // Example validators
+        ]
       };
     } else {
       return {
@@ -114,12 +113,10 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   onSubmit() {
     if (this.myForm.valid) {
       console.log('Form submitted:', this.myForm.value);
-      // Handle form submission (e.g., send data to server)
     }
   }
 
   ngOnDestroy(): void {
-    // Implement OnDestroy
     this.destroy$.next();
     this.destroy$.complete();
   }
