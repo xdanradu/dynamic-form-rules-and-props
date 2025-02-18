@@ -38,6 +38,9 @@ export class DynamicFormComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   viewInitialized = false;
 
+  field1IsFocused = false;
+  field2IsFocused = false;
+
   constructor(private fb: FormBuilder) {
     this.field1Config$ = new BehaviorSubject<FieldConfig | null>(null);
     this.field2Config$ = new BehaviorSubject<FieldConfig | null>(null);

@@ -16,7 +16,14 @@
       [ngClass]="{'invalid': myForm.get('field1')?.invalid &&
       (myForm.get('field1')?.dirty || myForm.get('field1')?.touched),
       'valid-input': !myForm.get('field1')?.invalid}"
+      (focus)="field1IsFocused = true"
+      (blur)="field1IsFocused = false"
     />
+
+    @if(myForm.get('field1')?.invalid && field1IsFocused){
+      <div style="color: blue">Display a message only when user cursor is inside field 1</div>
+    } 
+
     @if(myForm.get('field1')?.invalid &&
         (myForm.get('field1')?.dirty || myForm.get('field1')?.touched))
         {
@@ -60,7 +67,14 @@
       [ngClass]="{'invalid': myForm.get('field2')?.invalid &&
       (myForm.get('field2')?.dirty || myForm.get('field2')?.touched),
       'valid-input': !myForm.get('field2')?.invalid}"
+      (focus)="field2IsFocused = true"
+      (blur)="field2IsFocused = false"
     />
+
+@if(myForm.get('field2')?.invalid && field2IsFocused){
+  <div style="color: blue">Display a message only when user cursor is inside field 2</div>
+} 
+
     @if(myForm.get('field2')?.invalid &&
         (myForm.get('field2')?.dirty || myForm.get('field2')?.touched))
     {
