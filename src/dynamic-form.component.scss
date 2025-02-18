@@ -1,0 +1,25 @@
+:host {
+    input {
+        padding:5px;
+    }
+
+    .invalid {
+        border: 1px solid red;
+        background-color: #fcd4de;
+    }
+
+    .valid {
+        color: green;
+    }
+
+    .valid-input {
+        color: green;
+        border: 1px solid green;
+        background-color: #d4fce5;
+    }
+
+    button {
+        margin-top:15px;
+        padding: 5px;
+    }
+}

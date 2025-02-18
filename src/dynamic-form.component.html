@@ -1,0 +1,100 @@
+@if(!viewInitialized){
+    <h1>Loading data...</h1>
+} @else {
+    <h1>View initialized</h1>
+
+<hr>
+<form [formGroup]="myForm">
+  <div *ngIf="field1Config$ | async as config">
+    <input
+      type="text"
+      id="field1"
+      placeholder="Field 1"
+      formControlName="field1"
+      [maxLength]="config.maxLength"
+      [minLength]="config.minLength"
+      [ngClass]="{'invalid': myForm.get('field1')?.invalid &&
+      (myForm.get('field1')?.dirty || myForm.get('field1')?.touched),
+      'valid-input': !myForm.get('field1')?.invalid}"
+    />
+    @if(myForm.get('field1')?.invalid &&
+        (myForm.get('field1')?.dirty || myForm.get('field1')?.touched))
+        {
+            <div>
+
+    @if(myForm.get('field1')?.errors?.['required']){
+        Field 1 is required.
+    }
+
+    @if(myForm.get('field1')?.errors?.['pattern']){
+        Field 1 regex not correct (ex: 12A).
+    }
+
+      @if(myForm.get('field1')?.errors?.['minlength']){ Field 1 must be at least
+      {{myForm.get('field1')?.errors?.['minlength']?.['requiredLength']}}
+      characters long. } 
+      
+      @if(myForm.get('field1')?.errors?.['maxlength']){ Field
+      1 must be max
+      {{myForm.get('field1')?.errors?.['maxlength']?.['requiredLength']}}
+      characters long. }
+      </div>
+        }
+    </div>
+  
+
+  @if(!myForm.get('field1')?.invalid){ 
+    <div [ngClass]="{'valid': !myForm.get('field1')?.invalid}">
+        Field 1 is valid</div> 
+    }
+
+<hr>
+  <div *ngIf="field2Config$ | async as config">
+    <input
+      type="text"
+      id="field2"
+      formControlName="field2"
+      placeholder="Field 2"
+      [maxLength]="config.maxLength"
+      [minLength]="config.minLength"
+      [ngClass]="{'invalid': myForm.get('field2')?.invalid &&
+      (myForm.get('field2')?.dirty || myForm.get('field2')?.touched),
+      'valid-input': !myForm.get('field2')?.invalid}"
+    />
+    @if(myForm.get('field2')?.invalid &&
+        (myForm.get('field2')?.dirty || myForm.get('field2')?.touched))
+    {
+<div>
+
+      @if(myForm.get('field2')?.errors?.['required']){
+        Field 2 is required.
+      }
+
+      @if(myForm.get('field2')?.errors?.['pattern']){
+        Field 2 regex not correct (ex: 12A).
+    }
+
+      @if(myForm.get('field2')?.errors?.['minlength']){ Field 2 must be at least
+      {{myForm.get('field2')?.errors?.['minlength']?.['requiredLength']}}
+      characters long. }
+
+      @if(myForm.get('field2')?.errors?.['maxlength']){ Field
+       2 must be max
+        {{myForm.get('field2')?.errors?.['maxlength']?.['requiredLength']}}
+        characters long. }
+      </div>
+      }
+      
+      @if(!myForm.get('field2')?.invalid){ 
+        <div [ngClass]="{'valid': !myForm.get('field2')?.invalid}">
+            Field 2 is valid</div> 
+        }
+
+  </div>
+
+  <button type="submit" (click)="onSubmit()">Submit</button>
+</form>
+
+<p>Form value: {{ myForm.value | json }}</p>
+<p>Form valid: {{ myForm.valid }}</p>
+}

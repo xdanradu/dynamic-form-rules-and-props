@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { RouterOutlet } from '@angular/router';
+import { DynamicFormComponent } from './dynamic-form.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, DynamicFormComponent],
   template: `
-    <h1>Hello from {{ name }}!</h1>
+  <app-dynamic-form></app-dynamic-form>
     <a target="_blank" href="https://angular.dev/overview">
       Learn more about Angular
     </a>
