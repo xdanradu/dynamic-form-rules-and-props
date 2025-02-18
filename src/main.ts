@@ -9,9 +9,7 @@ import { DynamicFormComponent } from './dynamic-form.component';
   imports: [RouterOutlet, DynamicFormComponent],
   template: `
   <app-dynamic-form></app-dynamic-form>
-    <a target="_blank" href="https://angular.dev/overview">
-      Learn more about Angular
-    </a>
+  <router-outlet />
   `,
 })
 export class App {
